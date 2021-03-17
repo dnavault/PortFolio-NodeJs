@@ -1,10 +1,27 @@
   const http = require('http');
+  const { URL } = require('url');
+  
   const dt = require('./mymodule');
   http
     .createServer(function(req, res) {
       res.writeHead(200,{'Content-Type':'text/html'});
+     
+      
       res.write(`The date and time: ` 
        + dt.myDateTime());
+
+      // query string extraction
+      //res.write(req.url + '\n');
+      // query string parts
+     //const myURL1 = new URL({ toString: () => 'https://example.org/' });
+     //res.write(myURL1.toString());
+      
+     // const myURL2 = new URL('https://你好你好');
+     // res.write(myURL2.toString());
+
+      const myURL3 = URL.domainToUnicode('xn--fiq228c.com');
+      res.write(myURL3.toString());
+      
       res.end();
     })
     .listen(8080);
